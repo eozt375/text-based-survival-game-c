@@ -1,56 +1,70 @@
 # text-based-survival-game-c
 
 KARAKTER TABANLI HAYATTA KALMA SİMÜLASYONU – KOD MANTIĞI AÇIKLAMASI
+
 1. GENEL YAPI
-Program, karakterĜn hayatta kalmasını sağlayan basĜt bĜr komut tabanlı sĜmülasyondur. Sağlık,
-enerjĜ, yemek sayısı ve sığınak durumunu Ĝzleyen değĜşkenler kullanılır. Oyuncu komutlar vererek
-hayatta kalmaya çalışır.
+Program, karakterin hayatta kalmasını sağlayan basit bir komut tabanlı simülasyondur. Sağlık, enerji, yemek sayısı ve sığınak durumunu izleyen değişkenler kullanılır. Oyuncu komutlar vererek hayatta kalmaya çalışır.
+
 2. ANA DEĞİŞKENLER
-- saglĜk: KarakterĜn can mĜktarı (0–100)
-- enerjĜ: KarakterĜn hareket enerjĜsĜ (0–100)
-- yemek_sayĜsĜ: Avlanınca artan, dĜnlenĜrken tüketĜlen kaynak
-- sĜgĜnak_var: Sığınak bulunup bulunmadığını tutar (0 veya 1)
+- saglik: Karakterin can miktarı (0–100)
+- enerji: Karakterin hareket enerjisi (0–100)
+- yemek_sayisi: Avlanınca artan, dinlenirken tüketilen kaynak
+- siginak_var: Sığınak bulunup bulunmadığını tutar (0 veya 1)
 - komut: Kullanıcıdan alınan karakter komutu
+
 3. TEMEL FONKSİYONLAR
-• komutlarĜ_acĜkla():
- Oyuncuya kullanılabĜlecek komutları lĜsteler.
+• komutlari_acikla():
+  Oyuncuya kullanılabilecek komutları listeler.
+
 • durumu_goster():
- Sağlık ve enerjĜ değerlerĜnĜ ekrana yazdırır.
- Sağlık 0 olursa oyun sona erer.
-• envanterĜ_goster():
- Yemek ve sığınak durumunu ekrana yazdırır.
+  Sağlık ve enerji değerlerini ekrana yazdırır.
+  Sağlık 0 olursa oyun sona erer.
+
+• envanteri_goster():
+  Yemek ve sığınak durumunu ekrana yazdırır.
+
 • deger():
- Sağlık ve enerjĜ değerlerĜnĜ 0 Ĝle 100 arasında tutar.
-4. ANA PROGRAM AKIŞI (maĜn)
-- srand(tĜme(0)) Ĝle rastgele mekanĜk aktĜf edĜlĜr.
-- Kullanıcıdan süreklĜ olarak bĜr komut ĜstenĜr.
+  Sağlık ve enerji değerlerini 0 ile 100 arasında tutar.
+
+4. ANA PROGRAM AKIŞI (main)
+- srand(time(0)) ile rastgele mekanik aktif edilir.
+- Kullanıcıdan sürekli olarak bir komut istenir.
+
 5. KOMUTLARIN YAPISI
 A) Avlanma (A)
- - EnerjĜ 10’dan düşükse avlanamaz.
- - %33 ĜhtĜmalle yemek bulunur.
- - %33 ĜhtĜmalle yaralanma olur.
- - AksĜ halde av başarısız olur.
+  - Enerji 10’dan düşükse avlanamaz.
+  - %33 ihtimalle yemek bulunur.
+  - %33 ihtimalle yaralanma olur.
+  - Aksi halde av başarısız olur.
+
 B) Sığınak Arama (S)
- - Zaten sığınak varsa tekrar arayamaz.
- - EnerjĜ 10’dan azsa arama yapılamaz.
- - EnerjĜ > 50 Ĝse %50 ĜhtĜmalle sığınak bulunur.
- - EnerjĜ < 30 Ĝse başarısızlık şansı artar.
-C) DĜnlenme (R)
- - Yemek varsa sağlık +15, enerjĜ +20.
- - Yemek yoksa enerjĜ +5.
+  - Zaten sığınak varsa tekrar arayamaz.
+  - Enerji 10’dan azsa arama yapılamaz.
+  - Enerji > 50 ise %50 ihtimalle sığınak bulunur.
+  - Enerji < 30 ise başarısızlık şansı artar.
+
+C) Dinlenme (R)
+  - Yemek varsa sağlık +15, enerji +20.
+  - Yemek yoksa enerji +5.
+
 D) Envanter (E)
- - Yemek ve sığınak bĜlgĜlerĜnĜ gösterĜr.
-E) TehlĜke Dalgası (F)
- - Üç aşamalı bĜr döngü ĜçĜnde rastgele zarar veya enerjĜ kaybı oluşur.
-F) ŞĜfrelĜ GeçĜt (P)
- - Rastgele seçĜlmĜş bĜr harf bulunmaya çalışılır.
- - Oyuncunun 5 deneme hakkı vardır.
- - Doğru tahmĜnde enerjĜ +10.
+  - Yemek ve sığınak bilgilerini gösterir.
+
+E) Tehlike Dalgası (F)
+  - Üç aşamalı bir döngü içinde rastgele zarar veya enerji kaybı oluşur.
+
+F) Şifreli Geçit (P)
+  - Rastgele seçilmiş bir harf bulunmaya çalışılır.
+  - Oyuncunun 5 deneme hakkı vardır.
+  - Doğru tahminde enerji +10.
+
 G) Çıkış (X)
- - SĜmülasyon sonlanır.
+  - Simülasyon sonlanır.
+
 6. DÖNGÜ SİSTEMLERİ
-Program bĜrçok farklı döngü ĜçerĜr:
-- do–whĜle: Ana oyun döngüsü ve şĜfre bulma bölümü
-- for: TehlĜke dalgaları
-- Ĝf–else: Avlanma, sığınak arama ve dĜnlenme mantığı
-Bu yapı kullanıcıya basĜt ama dĜnamĜk bĜr hayatta kalma deneyĜmĜ sunar.
+Program birçok farklı döngü içerir:
+- do–while: Ana oyun döngüsü ve şifre bulma bölümü
+- for: Tehlike dalgaları
+- if–else: Avlanma, sığınak arama ve dinlenme mantığı
+
+Bu yapı kullanıcıya basit ama dinamik bir hayatta kalma deneyimi sunar.
